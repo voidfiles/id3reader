@@ -534,10 +534,11 @@ class Reader:
 
         return frame
 
-    def getValue(self, id):
+    def getValue(self, id, default=None):
         """ Return the value for an ID3 tag id, or for a
             convenience label ('title', 'performer', ...),
-            or return None if there is no such value.
+            or return None if there is no such value or the
+            default if specified.
         """
         if self.frames.has_key(id):
             if hasattr(self.frames[id], 'value'):
@@ -547,6 +548,8 @@ class Reader:
                 v = self.getValue(id2)
                 if v:
                     return v
+        if default:
+            return default
         return None
 
     def getRawData(self, id):
