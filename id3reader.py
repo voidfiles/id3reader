@@ -548,7 +548,7 @@ class Reader:
                 v = self.getValue(id2)
                 if v:
                     return v
-        if default:
+        if default is not None:
             return default
         return None
 
